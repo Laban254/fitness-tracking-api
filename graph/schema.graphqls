@@ -1,0 +1,84 @@
+# User Authentication and Profiles
+type User {
+    id: ID!
+    email: String!
+    profile: UserProfile!
+    workouts: [Workout!]!
+    nutritionLogs: [Nutrition!]!
+    progress: [Progress!]!
+}
+
+type UserProfile {
+    name: String!
+    fitnessGoals: [String!]!
+    activityHistory: [String!]!
+}
+
+# Workout Management
+type Workout {
+    id: ID!
+    type: String!
+    duration: Int! # Duration in minutes
+    caloriesBurned: Int!
+    date: String!
+}
+
+# Nutrition Tracking
+type Nutrition {
+    id: ID!
+    meal: String!
+    calories: Int!
+    date: String!
+}
+
+# Progress Tracking
+type Progress {
+    id: ID!
+    weight: Float!
+    measurements: String! # e.g., "Chest: 36in, Waist: 32in"
+    date: String!
+}
+
+# Workout Plans and Recommendations
+type WorkoutPlan {
+    id: ID!
+    name: String!
+    description: String!
+    goals: [String!]!
+}
+
+# Optional Community and Social Features
+type Friend {
+    id: ID!
+    user: User!
+}
+
+# Combined Query Type
+type Query {
+    user(id: ID!): User
+    users: [User!]!
+    workouts(userId: ID!): [Workout!]!
+    workout(id: ID!): Workout
+    nutrition(userId: ID!): [Nutrition!]!
+    progress(userId: ID!): [Progress!]!
+    workoutPlans(userId: ID!): [WorkoutPlan!]!
+    friends(userId: ID!): [Friend!]!
+}
+
+# Combined Mutation Type
+type Mutation {
+    createUser(email: String!, password: String!): User!
+    updateUser(id: ID!, name: String, fitnessGoals: [String!]): User!
+    logWorkout(userId: ID!, type: String!, duration: Int!, caloriesBurned: Int!): Workout!
+    deleteWorkout(id: ID!): Boolean!
+    logNutrition(userId: ID!, meal: String!, calories: Int!): Nutrition!
+    updateNutrition(id: ID!, meal: String, calories: Int): Nutrition!
+    logProgress(userId: ID!, weight: Float!, measurements: String!): Progress!
+    addFriend(userId: ID!, friendId: ID!): Boolean!
+}
+
+# Schema definition
+schema {
+    query: Query
+    mutation: Mutation
+}

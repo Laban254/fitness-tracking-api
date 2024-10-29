@@ -1,0 +1,46 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.a
+*.o
+*.out
+*.bin
+*.test
+
+# Dependency directories
+/vendor/
+/pkg/
+/bin/
+/build/
+
+# Go module files
+go.sum
+go.mod
+
+# IDE and Editor specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.DS_Store
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Database files
+*.db             
+*.sql             
+*.sqlite3         
+*.backup         
+
+# Other files
+*.log
+*.tmp
+*.cache
